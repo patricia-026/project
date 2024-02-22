@@ -38,7 +38,7 @@ class ProjectController extends Controller
                 'name' => $contactData['name'],
                 'email' => $contactData['email'],
             ]);
-            $project->contacts()->attach($contact);
+            $project->contacts()->attach($contact->id);
         }
 
         return response([new ProjectResource($project), 201]);
@@ -73,7 +73,7 @@ class ProjectController extends Controller
                 'name' => $contactData['name'],
                 'email' => $contactData['email'],
             ]);
-            $project->contacts()->attach($contact);
+            $project->contacts()->attach($contact->id);
             Mail::to('testreceiver@gmail.com')->send(new Email($changes));
         }
 
