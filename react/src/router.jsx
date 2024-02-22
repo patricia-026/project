@@ -1,6 +1,8 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import DefaultLayout from "./components/DefaultLayout";
 import NotFound from "./views/NotFound";
+import Projects from "./views/Projects";
+import ProjectForm from "./views/ProjectForm";
 
 const router = createBrowserRouter([
     {
@@ -8,9 +10,9 @@ const router = createBrowserRouter([
         element: <DefaultLayout />,
         children: [
             { path: "/", element: <Navigate to="/projects" /> },
-            { path: "/projects" },
-            { path: "/projects/new" },
-            { path: "/projects/:id" },
+            { path: "/projects", element: <Projects /> },
+            { path: "/projects/new", element: <ProjectForm key="create" /> },
+            { path: "/projects/:id", element: <ProjectForm key="update" /> },
         ],
     },
     {
