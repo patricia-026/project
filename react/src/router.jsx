@@ -1,5 +1,6 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import DefaultLayout from "./components/DefaultLayout";
+import NotFound from "./views/NotFound";
 
 const router = createBrowserRouter([
     {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     },
     {
         path: "*",
+        element: <NotFound />,
     },
 ]);
 
