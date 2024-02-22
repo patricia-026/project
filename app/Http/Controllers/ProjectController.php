@@ -7,6 +7,8 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Resources\ProjectResource;
+use App\Mail\Email;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
@@ -64,6 +66,7 @@ class ProjectController extends Controller
         ]);
 
         $project->contacts()->detach();
+        $changes = $project->getChanges();
 
         foreach ($data['contacts'] as $contactData) {
             $contact = Contact::firstOrCreate([
@@ -71,6 +74,7 @@ class ProjectController extends Controller
                 'email' => $contactData['email'],
             ]);
             $project->contacts()->attach($contact);
+            Mail::to('testreceiver@gmail.com')->send(new Email($changes));
         }
 
         return new ProjectResource($project);

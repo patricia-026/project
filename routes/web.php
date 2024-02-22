@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Mail\Email;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});*/
+});
 
 Route::resource('/projects', ProjectController::class);
+
+/*Route::get('/testroute', function () {
+    $name = "Funny Coder";
+
+    // The email sending is done using the to method on the Mail facade
+    Mail::to('testreceiver@gmail.com')->send(new Email($name));
+});*/
